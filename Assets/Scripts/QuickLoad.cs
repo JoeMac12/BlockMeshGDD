@@ -5,15 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class QuickLoad : MonoBehaviour
 {
+    private string level1Name = "Level_01";
+    private string level2Name = "Level_02";
+    private string level3Name = "Level_03";
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftBracket))
         {
-            SwitchToPreviousScene();
+            SwitchToPreviousLevel();
         }
         else if (Input.GetKeyDown(KeyCode.RightBracket))
         {
-            SwitchToNextScene();
+            SwitchToNextLevel();
         }
 
         else if (Input.GetKeyDown(KeyCode.Escape))
@@ -22,18 +26,40 @@ public class QuickLoad : MonoBehaviour
         }
     }
 
-    void SwitchToNextScene()
+    void SwitchToNextLevel()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = (currentSceneIndex + 1) % SceneManager.sceneCountInBuildSettings;
-        SceneManager.LoadScene(nextSceneIndex);
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (currentSceneName == level1Name)
+        {
+            SceneManager.LoadScene(level2Name);
+        }
+        else if (currentSceneName == level2Name)
+        {
+            SceneManager.LoadScene(level3Name);
+        }
+        else if (currentSceneName == level3Name)
+        {
+            SceneManager.LoadScene(level1Name);
+        }
     }
 
-    void SwitchToPreviousScene()
+    void SwitchToPreviousLevel()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int previousSceneIndex = (currentSceneIndex - 1 + SceneManager.sceneCountInBuildSettings) % SceneManager.sceneCountInBuildSettings;
-        SceneManager.LoadScene(previousSceneIndex);
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (currentSceneName == level1Name)
+        {
+            SceneManager.LoadScene(level3Name);
+        }
+        else if (currentSceneName == level2Name)
+        {
+            SceneManager.LoadScene(level1Name);
+        }
+        else if (currentSceneName == level3Name)
+        {
+            SceneManager.LoadScene(level2Name);
+        }
     }
 
     void MainMenu()

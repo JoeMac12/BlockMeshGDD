@@ -65,6 +65,8 @@ public class Movement : MonoBehaviour
         UpdateMouse();
         UpdateMove();
         UpdateStamina();
+
+        Cursor.visible = false;
     }
 
     void UpdateMouse()
