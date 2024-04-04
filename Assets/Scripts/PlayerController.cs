@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -66,13 +65,6 @@ public class Movement : MonoBehaviour
         UpdateMouse();
         UpdateMove();
         UpdateStamina();
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-        }
     }
 
     void UpdateMouse()
